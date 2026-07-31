@@ -56,6 +56,13 @@ button.primary {
   font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit;
 }
 button.primary:hover { filter: brightness(1.1); }
+button.ghost {
+  background: transparent; color: var(--muted); border: 1px solid var(--border);
+  padding: 13px 20px; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+button.ghost:hover { color: var(--text); border-color: var(--muted); }
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .result {
   background: var(--accent-soft); border: 1px solid var(--accent);
   border-radius: 10px; padding: 16px; margin-top: 18px; font-size: 0.93rem;
@@ -104,7 +111,10 @@ footer a { color: var(--muted); }
       <label><input type="checkbox" id="optQuote" checked> 따옴표·대시 정규화</label>
       <label><input type="checkbox" id="optMulti"> 연속 공백 하나로</label>
     </div>
-    <button class="primary" id="cleanBtn">🧹 공백 제거하기</button>
+    <div class="btn-row">
+      <button class="primary" id="cleanBtn">🧹 공백 제거하기</button>
+      <button class="ghost" id="clearBtn">전체 지우기</button>
+    </div>
     <div id="out" style="display:none">
       <div class="result" id="summary"></div>
       <div class="field" style="margin-top:16px">
@@ -196,6 +206,13 @@ document.getElementById('cleanBtn').addEventListener('click', () => {
     summary.className = 'result clean';
     summary.innerHTML = '<strong>숨어 있는 특수문자가 없습니다.</strong> 깨끗한 텍스트예요! ✨';
   }
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  document.getElementById('input').value = '';
+  document.getElementById('output').value = '';
+  document.getElementById('out').style.display = 'none';
+  document.getElementById('input').focus();
 });
 
 document.getElementById('copyBtn').addEventListener('click', async () => {
