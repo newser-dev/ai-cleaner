@@ -8,6 +8,9 @@
 <meta property="og:title" content="AI 공백 제거기">
 <meta property="og:description" content="AI가 쓴 글의 숨은 특수문자를 한 번에 찾아 제거하는 무료 도구">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c6cf6'/%3E%3Cpath d='M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <style>
 :root {
   --bg: #0f1117;
@@ -75,6 +78,20 @@ button.ghost:hover { color: var(--text); border-color: var(--muted); }
 .content h2 { font-size: 1.15rem; margin: 24px 0 10px; }
 .content p { margin-bottom: 12px; color: #c3c8d4; }
 .content ul { margin: 0 0 12px 20px; color: #c3c8d4; }
+.promo {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; margin-bottom: 14px;
+}
+.promo .promo-text { flex: 1; }
+.promo .promo-title { font-weight: 700; font-size: 0.92rem; }
+.promo .promo-sub { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+.promo a.promo-btn {
+  background: var(--accent); color: #fff; text-decoration: none;
+  padding: 9px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 700;
+  white-space: nowrap;
+}
+.promo-disclosure { color: var(--muted); font-size: 0.72rem; margin: -6px 0 14px 4px; }
 footer {
   border-top: 1px solid var(--border); padding: 24px 20px;
   text-align: center; color: var(--muted); font-size: 0.8rem;
@@ -96,7 +113,7 @@ footer a { color: var(--muted); }
 <body>
 <header>
   <div class="header-inner">
-    <span style="font-size:1.4rem">🧹</span>
+    <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#7c6cf6"/><path d="M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
     <a class="logo" href="index.html">AI 공백 제거기</a>
   </div>
 </header>
@@ -116,7 +133,7 @@ footer a { color: var(--muted); }
       <label><input type="checkbox" id="optMulti"> 연속 공백 하나로</label>
     </div>
     <div class="btn-row">
-      <button class="primary" id="cleanBtn">🧹 공백 제거하기</button>
+      <button class="primary" id="cleanBtn">공백 제거하기</button>
       <button class="ghost" id="clearBtn">전체 지우기</button>
     </div>
     <div id="out" style="display:none">
@@ -129,6 +146,14 @@ footer a { color: var(--muted); }
     </div>
   </div>
 
+  <div class="promo">
+    <div class="promo-text">
+      <div class="promo-title">해외여행 준비 중이라면</div>
+      <div class="promo-sub">유심 교체 없이 쓰는 여행 eSIM, 쿠팡에서 최저가로</div>
+    </div>
+    <a class="promo-btn" href="https://link.coupang.com/a/gbuWusdqfc" target="_blank" rel="sponsored noopener">쿠팡에서 보기</a>
+  </div>
+  <p class="promo-disclosure">이 사이트는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
   <div class="card content">
     <h2>AI가 쓴 글에는 왜 이상한 공백이 숨어 있나요?</h2>
@@ -214,7 +239,7 @@ document.getElementById('cleanBtn').addEventListener('click', () => {
     summary.innerHTML = '<strong>' + total + '개</strong> 발견 · ' + entries.map(e => e[0] + ' ' + e[1] + '개').join(' · ');
   } else {
     summary.className = 'result clean';
-    summary.innerHTML = '<strong>숨어 있는 특수문자가 없습니다.</strong> 깨끗한 텍스트예요! ✨';
+    summary.innerHTML = '<strong>숨어 있는 특수문자가 없습니다.</strong> 깨끗한 텍스트입니다.';
   }
 });
 
