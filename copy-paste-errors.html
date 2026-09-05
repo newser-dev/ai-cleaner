@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>복사·붙여넣기 후 생기는 오류 7가지와 해결법 - 엑셀, 코드, 로그인 폼 | AI 공백 제거기</title>
+<meta name="description" content="붙여넣었더니 엑셀 숫자가 텍스트로 바뀌고, 코드가 SyntaxError를 내고, 비밀번호가 틀렸다고 나오는 이유. 숨은 특수문자가 일으키는 대표 오류 7가지와 해결법.">
+<meta name="theme-color" content="#0f1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c6cf6'/%3E%3Cpath d='M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<link rel="canonical" href="https://aicleaner.tech/copy-paste-errors.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6240593008907807" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBZCJF7WDN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HBZCJF7WDN');
+</script>
+<style>
+:root {
+  --bg: #0f1117; --card: #181b24; --text: #e8eaf0; --muted: #9aa1b2;
+  --accent: #7c6cf6; --accent-soft: rgba(124, 108, 246, 0.12); --border: #2a2e3b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
+header { border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 680px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+.logo { font-size: 0.95rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+.header-inner nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
+.header-inner nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; padding: 5px 8px; border-radius: 6px; }
+.header-inner nav a:hover, .header-inner nav a.active { background: var(--accent-soft); color: var(--accent); }
+main { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 1.25rem; margin-bottom: 6px; }
+.subtitle { color: var(--muted); margin-bottom: 16px; font-size: 0.85rem; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+.content h2 { font-size: 1.05rem; margin: 20px 0 8px; color: var(--text); }
+.content h2:first-child { margin-top: 0; }
+.content h3 { font-size: 0.92rem; margin: 14px 0 4px; color: var(--accent); }
+.content p { margin-bottom: 12px; color: #c3c8d4; }
+.content ul, .content ol { margin: 0 0 12px 20px; color: #c3c8d4; }
+.content li { margin-bottom: 6px; }
+.content a { color: var(--accent); }
+.content code { background: #10131b; border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 0.85em; color: #e8eaf0; }
+.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; }
+footer { border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; color: var(--muted); font-size: 0.8rem; }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#7c6cf6"/><path d="M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <a class="logo" href="index.html">AI 공백 제거기</a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="guide.html">가이드</a>
+      <a href="unicode-spaces.html">유니코드 문자</a>
+      <a href="copy-paste-errors.html" class="active">복붙 오류</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h1>복사·붙여넣기 후 생기는 오류 7가지와 해결법</h1>
+  <p class="subtitle">분명히 똑같이 붙여넣었는데 왜 안 될까요? 대부분 눈에 보이지 않는 문자 하나가 원인입니다. 실제로 자주 겪는 상황 7가지를 원인과 함께 정리했습니다.</p>
+
+  <div class="card content">
+    <h2>1. 엑셀에 붙여넣은 숫자가 계산이 안 돼요</h2>
+    <p>웹페이지나 PDF에서 복사한 금액을 엑셀에 붙여넣으면 왼쪽 정렬되고 SUM 함수가 0을 반환하는 경우가 있습니다. 숫자 사이나 끝에 <strong>NBSP(U+00A0)</strong>가 붙어 있어 엑셀이 텍스트로 인식하기 때문입니다. 특히 "1 234 567"처럼 천 단위를 공백으로 구분하는 유럽식 표기를 복사하면 거의 항상 발생합니다.</p>
+    <h3>해결</h3>
+    <p><code>=VALUE(SUBSTITUTE(A1, CHAR(160), ""))</code>로 NBSP를 지우고 숫자로 변환하세요. 데이터가 많다면 먼저 텍스트 정리 도구로 한 번 씻은 뒤 붙여넣는 것이 빠릅니다. TRIM 함수는 일반 공백만 지우고 NBSP는 못 지운다는 점을 기억하세요.</p>
+
+    <h2>2. 코드를 붙여넣었더니 SyntaxError가 나요</h2>
+    <p>블로그나 AI 답변에서 코드를 복사해 실행하면 <code>SyntaxError: Invalid or unexpected token</code> 같은 오류가 납니다. 코드는 멀쩡해 보이는데 말이죠. 원인은 두 가지입니다. 하나는 <strong>스마트 따옴표</strong>(“ ” ‘ ’)가 일반 따옴표(" ')를 대신하고 있는 것, 다른 하나는 줄 어딘가에 <strong>제로폭 공백</strong>이 숨어 있는 것입니다.</p>
+    <h3>해결</h3>
+    <p>오류가 난 줄을 텍스트 정리 도구에 붙여넣으면 어떤 문자가 문제인지 바로 보입니다. VS Code를 쓴다면 문제 문자가 노란 테두리로 강조되므로 그 자리를 지우고 다시 입력하세요. 붙여넣기 전에 정리하는 습관이 가장 확실합니다.</p>
+
+    <h2>3. 아이디·비밀번호가 맞는데 로그인이 안 돼요</h2>
+    <p>메모장이나 메신저에서 복사한 아이디를 붙여넣었는데 "존재하지 않는 계정"이라고 나옵니다. 문자열 끝에 <strong>제로폭 공백이나 NBSP</strong>가 붙어 있으면 서버는 다른 문자열로 판단합니다. 일반 공백은 대부분의 로그인 폼이 자동으로 제거하지만, 특수 공백은 그대로 통과시키는 경우가 많습니다.</p>
+    <h3>해결</h3>
+    <p>붙여넣은 뒤 End 키를 누르고 Backspace를 한 번 눌러 보세요. 커서가 움직이지 않으면서 무언가 지워진다면 보이지 않는 문자가 있었던 것입니다. 앞쪽도 Home 키와 Delete로 같은 방식으로 확인할 수 있습니다.</p>
+
+    <h2>4. 검색하면 분명히 있는 단어가 안 찾아져요</h2>
+    <p>문서 안에 "계약서"라는 단어가 보이는데 Ctrl+F로 검색하면 0건입니다. 단어 중간에 <strong>제로폭 공백이나 소프트 하이픈</strong>이 끼어 있으면 "계약" + (보이지 않는 문자) + "서"로 저장되어 있어 검색어와 일치하지 않습니다. 웹에서 복사한 긴 문서에서 특히 자주 발생합니다.</p>
+    <h3>해결</h3>
+    <p>문서 전체를 정리 도구에 넣어 보이지 않는 문자를 제거한 뒤 다시 저장하세요. 워드에서는 찾기·바꾸기 창에서 "특수문자 사용"을 켜고 <code>^u8203</code>(제로폭 공백)을 검색할 수도 있습니다.</p>
+
+    <h2>5. 글자수 세기 결과가 사이트마다 달라요</h2>
+    <p>같은 자기소개서를 A 사이트에서는 998자, B 사이트에서는 1,003자로 세는 경우가 있습니다. 보이지 않는 문자를 글자로 세느냐 마느냐, NBSP를 공백으로 보느냐 아니냐에 따라 결과가 달라지기 때문입니다. 글자수 제한에 아슬아슬하게 걸려 있다면 제출이 막힐 수 있습니다.</p>
+    <h3>해결</h3>
+    <p>제출 전에 텍스트를 정리해서 특수문자를 없애면 어떤 사이트에서 세든 같은 결과가 나옵니다. 정리 후에도 제한에 가깝다면 10자 정도 여유를 두는 것이 안전합니다.</p>
+
+    <h2>6. 마크다운·HTML로 붙여넣으면 서식이 깨져요</h2>
+    <p>노션이나 깃허브에 글을 붙여넣었더니 목록이 목록으로 인식되지 않거나, 링크가 링크가 되지 않습니다. 하이픈(-) 자리에 <strong>긴 대시(—, –)</strong>가, 점 세 개(...) 자리에 <strong>말줄임표(…)</strong>가 들어가 있으면 마크다운 문법으로 인식되지 않습니다. 워드와 AI 모두 이 문자들을 자동으로 바꿔 넣는 경향이 있습니다.</p>
+    <h3>해결</h3>
+    <p>정리 도구의 "따옴표·대시 정규화" 옵션을 켜면 긴 대시는 하이픈으로, 말줄임표는 점 세 개로 돌아옵니다. 워드에서 작성한다면 자동 고침 옵션에서 "하이픈을 대시로" 항목을 끄는 것도 방법입니다.</p>
+
+    <h2>7. CSV 파일 첫 번째 열 이름 앞에 이상한 문자가 있어요</h2>
+    <p>엑셀에서 저장한 CSV를 다른 프로그램으로 열면 첫 열 이름이 "ID" 대신 "ID"나 "﻿ID"로 보입니다. 파일 맨 앞에 붙은 <strong>BOM(U+FEFF)</strong> 때문입니다. 엑셀은 한글이 깨지지 않도록 UTF-8 CSV에 BOM을 붙이는데, 이를 처리하지 못하는 프로그램에서는 첫 열 이름의 일부로 인식됩니다.</p>
+    <h3>해결</h3>
+    <p>파이썬이라면 <code>encoding="utf-8-sig"</code>로 열면 BOM을 자동으로 제거합니다. 다른 프로그램에서는 열 이름을 정리 도구에 붙여넣어 BOM을 지우거나, 메모장에서 "UTF-8(BOM 없음)"으로 다시 저장하세요.</p>
+  </div>
+
+  <div class="card content">
+    <h2>공통 해결책: 붙여넣기 전에 한 번 씻기</h2>
+    <p>위 일곱 가지는 모두 원인이 같습니다. 눈에 보이지 않거나 비슷하게 보이는 문자가 원본 텍스트에 섞여 있는 것입니다. 중요한 곳에 붙여넣기 전에 텍스트를 한 번 정리하는 습관을 들이면 대부분의 문제를 예방할 수 있습니다.</p>
+    <p style="margin-top:16px"><a class="cta" href="index.html">텍스트 정리 도구 열기</a></p>
+    <h2>함께 읽으면 좋은 글</h2>
+    <ul>
+      <li><a href="unicode-spaces.html">유니코드 공백·보이지 않는 문자 총정리</a> — 각 문자의 코드와 원래 용도</li>
+      <li><a href="guide.html">AI 티 안 나게 글 다듬는 법 체크리스트 7가지</a> — 문체까지 다듬는 방법</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <p>© 2026 AI 공백 제거기 · <a href="index.html">홈</a> · <a href="about.html">소개</a> · <a href="privacy.html">개인정보처리방침</a></p>
+</footer>
+</body>
+</html>

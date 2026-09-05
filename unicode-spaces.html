@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유니코드 공백·보이지 않는 문자 총정리 - 제로폭 공백, NBSP, BOM | AI 공백 제거기</title>
+<meta name="description" content="제로폭 공백(U+200B), NBSP(U+00A0), BOM(U+FEFF) 등 눈에 보이지 않는 유니코드 문자의 종류와 생기는 원인, 일으키는 문제, 찾고 지우는 방법을 정리했습니다.">
+<meta name="theme-color" content="#0f1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c6cf6'/%3E%3Cpath d='M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<link rel="canonical" href="https://aicleaner.tech/unicode-spaces.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6240593008907807" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBZCJF7WDN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HBZCJF7WDN');
+</script>
+<style>
+:root {
+  --bg: #0f1117; --card: #181b24; --text: #e8eaf0; --muted: #9aa1b2;
+  --accent: #7c6cf6; --accent-soft: rgba(124, 108, 246, 0.12); --border: #2a2e3b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
+header { border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 680px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+.logo { font-size: 0.95rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+.header-inner nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
+.header-inner nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; padding: 5px 8px; border-radius: 6px; }
+.header-inner nav a:hover, .header-inner nav a.active { background: var(--accent-soft); color: var(--accent); }
+main { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 1.25rem; margin-bottom: 6px; }
+.subtitle { color: var(--muted); margin-bottom: 16px; font-size: 0.85rem; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+.content h2 { font-size: 1.05rem; margin: 20px 0 8px; color: var(--text); }
+.content h2:first-child { margin-top: 0; }
+.content p { margin-bottom: 12px; color: #c3c8d4; }
+.content ul, .content ol { margin: 0 0 12px 20px; color: #c3c8d4; }
+.content li { margin-bottom: 6px; }
+.content a { color: var(--accent); }
+.content code { background: #10131b; border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 0.85em; color: #e8eaf0; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 0.86rem; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; color: #c3c8d4; }
+th { color: var(--text); font-weight: 700; background: #10131b; }
+.table-wrap { overflow-x: auto; }
+.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; }
+footer { border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; color: var(--muted); font-size: 0.8rem; }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#7c6cf6"/><path d="M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <a class="logo" href="index.html">AI 공백 제거기</a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="guide.html">가이드</a>
+      <a href="unicode-spaces.html" class="active">유니코드 문자</a>
+      <a href="copy-paste-errors.html">복붙 오류</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h1>유니코드 공백·보이지 않는 문자 총정리</h1>
+  <p class="subtitle">화면에는 안 보이는데 분명히 존재하는 문자들. 어디서 생기고, 무슨 문제를 일으키고, 어떻게 찾아 지우는지 한 번에 정리했습니다.</p>
+
+  <div class="card content">
+    <h2>보이지 않는 문자는 왜 생기나요?</h2>
+    <p>유니코드에는 화면에 아무것도 그리지 않으면서 "여기서 줄을 바꾸지 마라", "여기서 단어를 끊어도 된다" 같은 <strong>지시만 담는 문자</strong>가 여럿 있습니다. 원래는 조판이나 다국어 처리를 위해 만들어진 것이지만, 요즘은 전혀 다른 경로로 일상 문서에 흘러 들어옵니다.</p>
+    <ul>
+      <li><strong>웹페이지 복사</strong> — 사이트 레이아웃용으로 넣은 NBSP나 제로폭 공백이 텍스트와 함께 딸려 옵니다.</li>
+      <li><strong>워드·한글 문서</strong> — "줄바꿈 없는 공백" 기능을 쓰면 NBSP가, 자동 하이픈 기능을 쓰면 소프트 하이픈이 들어갑니다.</li>
+      <li><strong>AI 생성 텍스트</strong> — ChatGPT, Claude 등은 학습 데이터에 섞여 있던 특수 공백과 스마트 따옴표를 그대로 출력하는 경우가 있습니다.</li>
+      <li><strong>이메일·메신저</strong> — 서식 있는 메일을 텍스트로 변환하면서 특수 공백이 남습니다.</li>
+      <li><strong>PDF 텍스트 추출</strong> — PDF의 글자 간격을 표현하던 문자가 공백처럼 변환됩니다.</li>
+    </ul>
+  </div>
+
+  <div class="card content">
+    <h2>종류별 정리표</h2>
+    <p>아래 표의 코드는 유니코드 코드포인트(U+ 뒤의 16진수)입니다. 코드 편집기나 검색 도구에서 이 값으로 찾을 수 있습니다.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>이름</th><th>코드</th><th>원래 용도</th><th>일으키는 문제</th></tr></thead>
+      <tbody>
+        <tr><td>제로폭 공백<br>(Zero Width Space)</td><td><code>U+200B</code></td><td>줄바꿈 가능 지점 표시</td><td>검색 불일치, 글자수 오차, ID·비밀번호 입력 실패</td></tr>
+        <tr><td>제로폭 비접합자</td><td><code>U+200C</code></td><td>아랍어 등에서 글자 결합 방지</td><td>같은 단어가 다른 문자열로 인식됨</td></tr>
+        <tr><td>제로폭 접합자</td><td><code>U+200D</code></td><td>이모지·인도계 문자 결합</td><td>이모지 조합이 깨지거나 문자열 비교 실패</td></tr>
+        <tr><td>단어 결합자<br>(Word Joiner)</td><td><code>U+2060</code></td><td>줄바꿈 금지</td><td>제로폭 공백과 같은 문제</td></tr>
+        <tr><td>BOM<br>(Byte Order Mark)</td><td><code>U+FEFF</code></td><td>파일 인코딩 표시</td><td>CSV 첫 열 이름 깨짐, 스크립트 첫 줄 오류</td></tr>
+        <tr><td>소프트 하이픈</td><td><code>U+00AD</code></td><td>줄 끝에서만 보이는 하이픈</td><td>단어 중간에 보이지 않는 문자가 끼어 검색 실패</td></tr>
+        <tr><td>NBSP<br>(줄바꿈 없는 공백)</td><td><code>U+00A0</code></td><td>숫자와 단위 사이 등 줄바꿈 방지</td><td>엑셀에서 숫자가 텍스트로 인식, trim() 미적용</td></tr>
+        <tr><td>좁은 NBSP</td><td><code>U+202F</code></td><td>프랑스어 문장부호 앞 등</td><td>NBSP와 동일, AI 출력에 자주 등장</td></tr>
+        <tr><td>전각 공백</td><td><code>U+3000</code></td><td>동아시아 조판용 한 글자 폭 공백</td><td>일반 공백보다 넓어 정렬이 어긋남</td></tr>
+        <tr><td>타이포그래피 공백</td><td><code>U+2000~200A</code></td><td>인쇄용 다양한 폭의 공백</td><td>공백으로 인식되지 않아 검색·분리 실패</td></tr>
+        <tr><td>방향 제어 문자</td><td><code>U+200E, U+200F</code><br><code>U+202A~202E</code></td><td>아랍어·히브리어 좌우 방향 지정</td><td>텍스트 순서가 뒤집혀 보이거나 보안 경고</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card content">
+    <h2>내 문서에 있는지 확인하는 방법</h2>
+    <p><strong>가장 빠른 방법</strong>은 <a href="index.html">AI 공백 제거기</a>에 붙여넣는 것입니다. 어떤 문자가 몇 개 있는지 코드와 함께 보여줍니다. 도구 없이 확인하려면 다음 방법도 있습니다.</p>
+    <ul>
+      <li><strong>VS Code</strong> — 기본 설정으로 제로폭 공백과 NBSP를 노란 테두리로 강조해서 보여줍니다. <code>editor.renderControlCharacters</code>가 켜져 있는지 확인하세요.</li>
+      <li><strong>브라우저 검사 도구</strong> — 요소 검사(F12)에서 텍스트를 선택하면 <code>&amp;nbsp;</code>, <code>&amp;#8203;</code> 같은 엔티티로 표시됩니다.</li>
+      <li><strong>엑셀·구글 시트</strong> — <code>=CODE(MID(A1, n, 1))</code>로 n번째 글자의 코드를 확인할 수 있습니다. 160이면 NBSP, 8203이면 제로폭 공백입니다.</li>
+      <li><strong>정규식 검색</strong> — 텍스트 편집기에서 <code>[&#92;u200B-&#92;u200F&#92;u2060&#92;uFEFF&#92;u00A0&#92;u202F&#92;u3000]</code>로 검색하면 한 번에 찾습니다.</li>
+    </ul>
+    <h2>지우는 방법</h2>
+    <p>워드·한글에서는 찾기·바꾸기에서 특수문자를 직접 입력하기 어렵기 때문에, 텍스트를 도구에 붙여넣어 정리한 뒤 다시 붙여넣는 방식이 가장 확실합니다. 코드 편집기라면 위 정규식으로 찾아 빈 문자열이나 일반 공백으로 바꾸면 됩니다. 엑셀에서는 <code>=SUBSTITUTE(A1, CHAR(160), " ")</code>로 NBSP를 일반 공백으로 바꿀 수 있지만, 제로폭 공백은 CHAR 함수로 표현할 수 없어 <code>=SUBSTITUTE(A1, UNICHAR(8203), "")</code>를 써야 합니다.</p>
+    <p style="margin-top:16px"><a class="cta" href="index.html">붙여넣고 바로 확인하기</a></p>
+  </div>
+
+  <div class="card content">
+    <h2>함께 읽으면 좋은 글</h2>
+    <ul>
+      <li><a href="copy-paste-errors.html">복사·붙여넣기 후 생기는 오류 7가지와 해결법</a> — 위 문자들이 실제로 어떤 사고를 치는지</li>
+      <li><a href="guide.html">AI 티 안 나게 글 다듬는 법 체크리스트 7가지</a> — 특수문자 제거 이후 문체 다듬기</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <p>© 2026 AI 공백 제거기 · <a href="index.html">홈</a> · <a href="about.html">소개</a> · <a href="privacy.html">개인정보처리방침</a></p>
+</footer>
+</body>
+</html>

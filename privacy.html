@@ -11,8 +11,11 @@
 <style>
 :root {
   --bg: #0f1117; --card: #181b24; --text: #e8eaf0; --muted: #9aa1b2;
-  --accent: #7c6cf6; --border: #2a2e3b;
+  --accent: #7c6cf6; --accent-soft: rgba(124, 108, 246, 0.12); --border: #2a2e3b;
 }
+.header-inner nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
+.header-inner nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; padding: 5px 8px; border-radius: 6px; }
+.header-inner nav a:hover, .header-inner nav a.active { background: var(--accent-soft); color: var(--accent); }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
@@ -33,7 +36,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 20px;
 footer a { color: var(--muted); }
 </style>
 <link rel="canonical" href="https://aicleaner.tech/privacy.html">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6240593008907807" crossorigin="anonymous"></script>
+<meta name="robots" content="noindex, follow">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBZCJF7WDN"></script>
 <script>
@@ -48,6 +51,13 @@ footer a { color: var(--muted); }
   <div class="header-inner">
     <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#7c6cf6"/><path d="M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
     <a class="logo" href="index.html">AI 공백 제거기</a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="guide.html">가이드</a>
+      <a href="unicode-spaces.html">유니코드 문자</a>
+      <a href="copy-paste-errors.html">복붙 오류</a>
+      <a href="about.html">소개</a>
+    </nav>
   </div>
 </header>
 <main>

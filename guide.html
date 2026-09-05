@@ -38,6 +38,9 @@ header { border-bottom: 1px solid var(--border); }
   display: flex; align-items: center; gap: 8px;
 }
 .logo { font-size: 0.95rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+.header-inner nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
+.header-inner nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; padding: 5px 8px; border-radius: 6px; }
+.header-inner nav a:hover, .header-inner nav a.active { background: var(--accent-soft); color: var(--accent); }
 main { max-width: 680px; margin: 0 auto; padding: 20px 16px 40px; }
 h1 { font-size: 1.25rem; margin-bottom: 6px; }
 .subtitle { color: var(--muted); margin-bottom: 16px; font-size: 0.85rem; }
@@ -67,6 +70,13 @@ footer {
   <div class="header-inner">
     <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#7c6cf6"/><path d="M9 21.5 21.5 9M13 23l8-8M18 24l4.5-4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
     <a class="logo" href="index.html">AI 공백 제거기</a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="guide.html" class="active">가이드</a>
+      <a href="unicode-spaces.html">유니코드 문자</a>
+      <a href="copy-paste-errors.html">복붙 오류</a>
+      <a href="about.html">소개</a>
+    </nav>
   </div>
 </header>
 <main>
@@ -95,6 +105,11 @@ footer {
     <h2>정리</h2>
     <p>순서를 요약하면: ① 특수문자 제거(도구) → ② 접속어·수식어 정리 → ③ 구조와 리듬 흔들기 → ④ 내 경험 넣기 → ⑤ 사실 확인 → ⑥ 소리 내어 읽기. 앞의 ①은 기계적인 작업이라 도구에 맡기고, 나머지에 시간을 쓰는 것이 효율적입니다.</p>
     <p style="margin-top:16px"><a class="cta" href="index.html">지금 특수문자 제거하러 가기</a></p>
+    <h2>함께 읽으면 좋은 글</h2>
+    <ul>
+      <li><a href="unicode-spaces.html">유니코드 공백·보이지 않는 문자 총정리</a> — 제로폭 공백, NBSP가 정확히 무엇이고 어디서 생기는지</li>
+      <li><a href="copy-paste-errors.html">복사·붙여넣기 후 생기는 오류 7가지와 해결법</a> — 엑셀·코드·입력 폼에서 겪는 실제 사례</li>
+    </ul>
   </div>
 </main>
 <footer>
